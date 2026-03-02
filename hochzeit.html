@@ -1,0 +1,1724 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unsere Hochzeit</title>
+    <link href="https://fonts.googleapis.com/css2?family=Allison&family=Josefin+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --eucalyptus: #609B7F;
+            --dark: #2c2c2c;
+            --light: #f8f7f4;
+            --gold: #d4a574;
+            --white: #ffffff;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--dark);
+            background-color: var(--light);
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 0.75rem 2rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 2rem;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            flex-wrap: wrap;
+        }
+
+        .logo {
+            order: -1;
+            margin-right: 1rem;
+        }
+
+        nav a:not(.logo) {
+            white-space: nowrap;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--dark);
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        nav a:hover {
+            color: var(--eucalyptus);
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--eucalyptus);
+            transition: width 0.3s ease;
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        /* Monogram Logo */
+        .logo {
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
+            border: 2px solid var(--gold);
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--eucalyptus), var(--gold));
+            color: var(--white);
+            font-family: 'Allison', cursive;
+            font-size: 1.5rem;
+            font-weight: 400;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(96, 155, 127, 0.2);
+        }
+
+        .logo:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 20px rgba(96, 155, 127, 0.3);
+        }
+
+        .logo::after {
+            display: none;
+        }
+
+        /* Hamburger Menu */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 6px;
+            background: none;
+            border: none;
+            padding: 0;
+            z-index: 1001;
+        }
+
+        .hamburger span {
+            width: 25px;
+            height: 3px;
+            background: var(--dark);
+            transition: all 0.3s ease;
+            border-radius: 2px;
+        }
+
+        .hamburger.active span:nth-child(1) {
+            transform: rotate(45deg) translate(8px, 8px);
+        }
+
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(7px, -7px);
+        }
+
+        /* Mobile Menu */
+        .nav-menu {
+            display: contents;
+        }
+
+        @media (max-width: 768px) {
+            .hamburger {
+                display: flex;
+            }
+
+            .nav-menu {
+                display: none;
+                position: absolute;
+                top: 60px;
+                left: 0;
+                right: 0;
+                background: rgba(255, 255, 255, 0.98);
+                backdrop-filter: blur(10px);
+                flex-direction: column;
+                padding: 1rem 2rem;
+                gap: 1rem;
+                z-index: 999;
+                box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            }
+
+            .nav-menu.active {
+                display: flex;
+            }
+
+            .nav-menu a {
+                padding: 0.8rem 0;
+                border-bottom: 1px solid #eee;
+            }
+
+            .nav-menu a:last-child {
+                border-bottom: none;
+            }
+
+            nav {
+                flex-wrap: nowrap;
+                justify-content: space-between;
+            }
+
+            .logo {
+                margin-right: auto;
+                order: 0;
+            }
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            background: url('img/img2.jpg') center/cover;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            margin-top: 60px;
+            filter: sepia(0.6) saturate(0.85) hue-rotate(0deg) brightness(1);
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(212, 165, 116, 0.7) 0%, rgba(96, 155, 127, 0.5) 100%);
+            backdrop-filter: blur(3px);
+            z-index: 0;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background:
+                radial-gradient(circle at center, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.5) 100%);
+            z-index: 0;
+        }
+
+        .hero-content {
+            z-index: 1;
+            animation: fadeInUp 1s ease-out;
+            text-shadow: 3px 3px 15px rgba(0, 0, 0, 0.5), 0px 0px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero h1 {
+            font-size: 8rem;
+            font-family: 'Allison', cursive;
+            font-weight: 400;
+            letter-spacing: 3px;
+            margin-bottom: 1rem;
+            color: var(--white);
+        }
+
+        .hero .ampersand {
+            color: var(--eucalyptus);
+            font-size: 9rem;
+            display: inline-block;
+            margin: 0 0.5rem;
+            font-style: italic;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            color: var(--white);
+            font-weight: 600;
+            letter-spacing: 2px;
+            opacity: 0.9;
+            -webkit-text-stroke: 0.5px rgba(0, 0, 0, 0.4);
+        }
+
+        .hero .date {
+            margin-top: 2rem;
+            font-size: 1.1rem;
+            color: var(--white);
+            font-weight: 600;
+            letter-spacing: 2px;
+            -webkit-text-stroke: 0.5px rgba(0, 0, 0, 0.4);
+        }
+
+        /* Countdown Timer */
+        .countdown {
+            margin-top: 3rem;
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .countdown-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background: rgba(96, 155, 127, 0.25);
+            padding: 1.5rem 2rem;
+            border-radius: 15px;
+            min-width: 100px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(96, 155, 127, 0.4);
+            animation: slideInUp 0.6s ease-out;
+        }
+
+        .countdown-number {
+            font-family: 'Josefin Sans', sans-serif;
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--white);
+            line-height: 1;
+            text-shadow: none;
+            -webkit-text-stroke: 0.5px rgba(0, 0, 0, 0.3);
+        }
+
+        .countdown-label {
+            font-family: 'Josefin Sans', sans-serif;
+            font-size: 0.85rem;
+            color: var(--white);
+            margin-top: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 600;
+            opacity: 1;
+            text-shadow: none;
+            -webkit-text-stroke: 0.3px rgba(0, 0, 0, 0.3);
+        }
+
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Section Styling */
+        section {
+            padding: 6rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        h2 {
+            font-size: 3rem;
+            font-family: 'Allison', cursive;
+            font-weight: 400;
+            margin-bottom: 3rem;
+            text-align: center;
+            color: var(--dark);
+            position: relative;
+            padding-bottom: 1rem;
+        }
+
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background: var(--eucalyptus);
+        }
+
+        /* About Section */
+        .about {
+            background: var(--white);
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            margin-top: 3rem;
+        }
+
+        .about-text h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--eucalyptus);
+            font-weight: 400;
+        }
+
+        .about-text p {
+            color: #555;
+            margin-bottom: 1.5rem;
+            font-size: 1.05rem;
+            line-height: 1.8;
+        }
+
+        .about-image {
+            width: 100%;
+            height: 400px;
+            background: linear-gradient(135deg, var(--eucalyptus), var(--gold));
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-size: 1.2rem;
+            box-shadow: 0 20px 40px rgba(96, 155, 127, 0.15);
+        }
+
+        /* Details Section */
+        .details {
+            background: linear-gradient(135deg, rgba(96, 155, 127, 0.05) 0%, rgba(212, 165, 116, 0.05) 100%);
+        }
+
+        .details-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .detail-card {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 8px;
+            border-left: 4px solid var(--eucalyptus);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .detail-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .detail-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 0.8rem;
+            color: var(--eucalyptus);
+            font-weight: 500;
+        }
+
+        .detail-card p {
+            color: #666;
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+
+        /* Schedule Section */
+        .schedule {
+            background: var(--white);
+        }
+
+        .schedule-timeline {
+            max-width: 600px;
+            margin: 3rem auto;
+            position: relative;
+        }
+
+        .schedule-timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 3px;
+            height: 100%;
+            background: var(--eucalyptus);
+        }
+
+        .timeline-item {
+            margin-bottom: 2rem;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            position: relative;
+        }
+
+        .timeline-item:nth-child(odd) .time {
+            text-align: right;
+        }
+
+        .timeline-item:nth-child(even) .time {
+            order: 2;
+            text-align: left;
+        }
+
+        .time {
+            font-weight: 600;
+            color: var(--eucalyptus);
+            font-size: 1.1rem;
+        }
+
+        .event {
+            background: var(--light);
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        .event h4 {
+            color: var(--dark);
+            margin-bottom: 0.5rem;
+        }
+
+        .event p {
+            color: #666;
+            font-size: 0.95rem;
+        }
+
+        /* Gallery Section */
+        .gallery {
+            background: linear-gradient(135deg, rgba(96, 155, 127, 0.05) 0%, rgba(212, 165, 116, 0.05) 100%);
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .gallery-item {
+            aspect-ratio: 1;
+            background: linear-gradient(135deg, var(--eucalyptus), var(--gold));
+            border-radius: 10px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-weight: 300;
+            font-size: 1.1rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .gallery-item:hover {
+            transform: scale(1.05);
+        }
+
+        /* Groomsmen Section */
+        .groomsmen {
+            background: var(--white);
+        }
+
+        .groomsmen-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 3rem;
+            margin-top: 3rem;
+        }
+
+        .groomsman-card {
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .groomsman-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .groomsman-image {
+            width: 250px;
+            height: 250px;
+            margin: 0 auto 1.5rem;
+            background: linear-gradient(135deg, var(--eucalyptus), var(--gold));
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 15px 35px rgba(96, 155, 127, 0.2);
+            background-size: cover;
+            background-position: center;
+        }
+
+        .groomsman-card h3 {
+            font-size: 1.4rem;
+            margin-bottom: 0.3rem;
+            color: var(--dark);
+            font-weight: 500;
+        }
+
+        .groomsman-role {
+            color: var(--eucalyptus);
+            font-size: 0.95rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            letter-spacing: 1px;
+        }
+
+        .groomsman-text {
+            color: #666;
+            margin-bottom: 1.5rem;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            font-size: 0.9rem;
+        }
+
+        .contact-info a {
+            color: var(--eucalyptus);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .contact-info a:hover {
+            color: var(--gold);
+            text-decoration: underline;
+        }
+
+        /* Accommodations Section */
+        .accommodations {
+            background: linear-gradient(135deg, rgba(96, 155, 127, 0.05) 0%, rgba(212, 165, 116, 0.05) 100%);
+        }
+
+        .accommodations-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2.5rem;
+            margin-top: 3rem;
+        }
+
+        .accommodation-card {
+            background: var(--white);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .accommodation-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .accommodation-image {
+            width: 100%;
+            height: 220px;
+            background: linear-gradient(135deg, var(--eucalyptus), var(--gold));
+            background-size: cover;
+            background-position: center;
+        }
+
+        .accommodation-content {
+            padding: 2rem;
+        }
+
+        .accommodation-content h3 {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+            color: var(--dark);
+        }
+
+        .accommodation-location {
+            color: var(--eucalyptus);
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .accommodation-description {
+            color: #666;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+
+        .accommodation-features {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.8rem;
+            margin-bottom: 1.5rem;
+            font-size: 0.9rem;
+            color: #555;
+        }
+
+        .accommodation-features span {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .accommodation-price {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--eucalyptus);
+            margin-bottom: 1.5rem;
+        }
+
+        .accommodation-button {
+            width: 100%;
+            padding: 0.8rem;
+            background: var(--eucalyptus);
+            color: var(--white);
+            border: none;
+            border-radius: 5px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            text-align: center;
+            font-size: 0.95rem;
+        }
+
+        .accommodation-button:hover {
+            background: var(--gold);
+            color: var(--dark);
+        }
+
+        /* FAQ Section */
+        .faq {
+            background: var(--white);
+        }
+
+        .faq-container {
+            max-width: 100%;
+            margin: 3rem 0;
+        }
+
+        .faq-item {
+            margin-bottom: 1.5rem;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 3px 15px rgba(0, 0, 0, 0.05);
+            background: var(--white);
+            border: 1px solid #eee;
+            transition: all 0.3s ease;
+        }
+
+        .faq-item:hover {
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .faq-question {
+            padding: 1.5rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: linear-gradient(135deg, rgba(96, 155, 127, 0.05) 0%, rgba(212, 165, 116, 0.03) 100%);
+            transition: background 0.3s ease;
+            user-select: none;
+            font-weight: 500;
+            color: var(--dark);
+        }
+
+        .faq-question:hover {
+            background: linear-gradient(135deg, rgba(96, 155, 127, 0.1) 0%, rgba(212, 165, 116, 0.08) 100%);
+        }
+
+        .faq-question.active {
+            background: linear-gradient(135deg, rgba(96, 155, 127, 0.15) 0%, rgba(212, 165, 116, 0.1) 100%);
+            color: var(--eucalyptus);
+        }
+
+        .faq-icon {
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--eucalyptus);
+            font-size: 1.3rem;
+            transition: transform 0.3s ease;
+            flex-shrink: 0;
+            margin-left: 1rem;
+        }
+
+        .faq-item.open .faq-icon {
+            transform: rotate(180deg);
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            background: var(--white);
+        }
+
+        .faq-item.open .faq-answer {
+            max-height: 500px;
+        }
+
+        .faq-answer-content {
+            padding: 1.5rem 1.5rem 1.5rem 1.5rem;
+            color: #666;
+            line-height: 1.8;
+            font-size: 0.95rem;
+        }
+
+        /* CTA Section */
+        .cta {
+            background: var(--eucalyptus);
+            color: var(--white);
+            text-align: center;
+            padding: 4rem 2rem;
+        }
+
+        .cta h2 {
+            color: var(--white);
+            margin-bottom: 1rem;
+        }
+
+        .cta h2::after {
+            background: var(--gold);
+        }
+
+        .cta p {
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .button {
+            display: inline-block;
+            background: var(--gold);
+            color: var(--dark);
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+            letter-spacing: 1px;
+        }
+
+        .button:hover {
+            background: var(--white);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark);
+            color: var(--white);
+            text-align: center;
+            padding: 2rem;
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            animation: fadeIn 0.3s ease;
+        }
+
+        .modal-content {
+            background-color: var(--white);
+            margin: 2% auto;
+            padding: 2rem;
+            border-radius: 10px;
+            width: 90%;
+            max-width: 500px;
+            max-height: 90vh;
+            overflow-y: auto;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            animation: slideDown 0.3s ease;
+        }
+
+        .close {
+            color: #aaa;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: color 0.3s ease;
+            padding: 5px 10px;
+            float: right;
+            text-decoration: none;
+            display: block;
+            z-index: 2001;
+            position: relative;
+        }
+
+        .close:hover,
+        .close:active {
+            color: var(--eucalyptus);
+        }
+
+        .close:focus {
+            outline: none;
+            color: var(--eucalyptus);
+        }
+
+        .modal h2 {
+            color: var(--eucalyptus);
+            margin-top: 0;
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--dark);
+            font-weight: 500;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-family: inherit;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: var(--eucalyptus);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            nav {
+                gap: 1rem;
+                padding: 0.75rem 1rem;
+                flex-wrap: wrap;
+            }
+
+            .logo {
+                margin-right: 0.5rem;
+            }
+
+            nav a:not(.logo) {
+                font-size: 0.85rem;
+            }
+
+            .hero {
+                margin-top: 0 !important;
+                padding-top: 0 !important;
+            }
+
+            .hero {
+                margin-top: 80px;
+            }
+
+            .hero h1 {
+                font-size: 5rem;
+            }
+
+            .hero .ampersand {
+                font-size: 5.5rem;
+            }
+
+            .countdown {
+                gap: 0.8rem;
+                margin-top: 2rem;
+            }
+
+            .countdown-item {
+                padding: 0.8rem 0.9rem;
+                min-width: 60px;
+            }
+
+            .countdown-number {
+                font-size: 0.75rem;
+            }
+
+            .countdown-label {
+                font-size: 0.55rem;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+            }
+
+            .schedule-timeline::before {
+                left: 20px;
+            }
+
+            .timeline-item {
+                grid-template-columns: 50px 1fr;
+                gap: 1rem;
+            }
+
+            .timeline-item:nth-child(odd) .time,
+            .timeline-item:nth-child(even) .time {
+                grid-column: 1;
+                text-align: left;
+                writing-mode: vertical-rl;
+                text-orientation: mixed;
+                font-size: 0.9rem;
+            }
+
+            .timeline-item:nth-child(even) {
+                grid-template-columns: 50px 1fr;
+            }
+
+            .timeline-item:nth-child(even) .time {
+                order: 0;
+            }
+
+            h2 {
+                font-size: 2rem;
+            }
+
+            section {
+                padding: 3rem 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <a href="#hero" class="logo">JL</a>
+        <div class="nav-menu">
+            <a href="#about">Über uns</a>
+            <a href="#details">Details</a>
+            <a href="#groomsmen">Trauzeugen</a>
+            <a href="#accommodations">Unterkünfte</a>
+            <a href="#schedule">Ablauf</a>
+            <a href="#faq">FAQ</a>
+            <a href="#gallery">Galerie</a>
+            <a href="#rsvp">RSVP</a>
+        </div>
+        <button class="hamburger" id="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="hero" class="hero">
+        <div class="hero-content">
+            <h1>Laura <span class="ampersand">&</span> Jens</h1>
+            <p>Wir heiraten!</p>
+            <div class="date">22. April 2028</div>
+            <div class="countdown" id="countdown">
+                <div class="countdown-item">
+                    <div class="countdown-number" id="days">0</div>
+                    <div class="countdown-label">Tage</div>
+                </div>
+                <div class="countdown-item">
+                    <div class="countdown-number" id="hours">0</div>
+                    <div class="countdown-label">Stunden</div>
+                </div>
+                <div class="countdown-item">
+                    <div class="countdown-number" id="minutes">0</div>
+                    <div class="countdown-label">Minuten</div>
+                </div>
+                <div class="countdown-item">
+                    <div class="countdown-number" id="seconds">0</div>
+                    <div class="countdown-label">Sekunden</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <h2>Unsere Geschichte</h2>
+        <div class="about-content">
+            <div class="about-text">
+                <h3>Eine Liebe für die Ewigkeit</h3>
+                <p>
+                    Unsere Reise zusammen hat uns zu den glücklichsten Menschen der Welt gemacht.
+                    Von den ersten Momenten an war es Liebe auf den ersten Blick.
+                </p>
+                <p>
+                    Wir freuen uns riesig, diesen besonderen Tag mit all den Menschen zu teilen,
+                    die uns am wichtigsten sind. Und wir haben den perfekten Ort dafür gefunden:
+                    Das wunderbare Hofgut Heidesheim in der Pfalz - ein historisches Anwesen,
+                    das seit 1812 besteht und wo Tradition und moderner Charme sich perfekt verbinden.
+                    Danke, dass ihr Teil unserer Geschichte seid!
+                </p>
+            </div>
+            <div class="about-image" style="background: url('https://images.unsplash.com/photo-1519741497674-611481863552?w=800&q=80') center/cover; box-shadow: 0 20px 40px rgba(96, 155, 127, 0.15);">
+            </div>
+        </div>
+    </section>
+
+    <!-- Details Section -->
+    <section id="details" class="details">
+        <h2>Hochzeitsdetails</h2>
+        <div class="details-grid">
+            <div class="detail-card">
+                <h3>📅 Datum & Uhrzeit</h3>
+                <p>
+                    <strong>Samstag, 15. Juni 2024</strong><br>
+                    15:00 Uhr - Trauung<br>
+                    16:30 Uhr - Aperitif<br>
+                    18:00 Uhr - Dinner & Dancing
+                </p>
+            </div>
+            <div class="detail-card">
+                <h3>📍 Ort</h3>
+                <p>
+                    <strong>Hofgut Heidesheim</strong><br>
+                    Heidesheimer Hauptstr. 10<br>
+                    67283 Obrigheim, Pfalz<br>
+                    <a href="https://www.google.com/maps/search/Heidesheimer+Hauptstr.+10,+67283+Obrigheim" target="_blank" style="color: var(--eucalyptus);">Zur Karte →</a>
+                </p>
+            </div>
+            <div class="detail-card">
+                <h3>🎁 Geschenke</h3>
+                <p>
+                    Eure Präsenz ist unser Präsent! Falls ihr uns gerne beschenken möchtet,
+                    freuen wir uns über eine Überweisung für unsere Hochzeitsreise.
+                </p>
+            </div>
+            <div class="detail-card">
+                <h3>🚗 Anfahrt</h3>
+                <p>
+                    Parkplätze sind vor Ort vorhanden. Alternativ können Fahrkarten für
+                    öffentliche Verkehrsmittel bereitgestellt werden.
+                </p>
+            </div>
+            <div class="detail-card">
+                <h3>🍽️ Menü</h3>
+                <p>
+                    Bitte teilt uns bei der Anmeldung eure Menüwünsche und
+                    Allergien mit. Vegetarische Optionen verfügbar!
+                </p>
+            </div>
+            <div class="detail-card">
+                <h3>❓ Fragen?</h3>
+                <p>
+                    Kontaktiert uns gerne unter:<br>
+                    <strong>kontakt@unsere-hochzeit.de</strong><br>
+                    oder <strong>+49 123 456789</strong><br><br>
+                    <strong>Zum Veranstaltungsort:</strong><br>
+                    <a href="mailto:Info@Hofgut-Heidesheim.de" style="color: var(--eucalyptus);">Info@Hofgut-Heidesheim.de</a>
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Groomsmen Section -->
+    <section id="groomsmen" class="groomsmen">
+        <h2>Unsere Trauzeugen</h2>
+        <div class="groomsmen-grid">
+            <div class="groomsman-card">
+                <div class="groomsman-image" style="background-image: url('https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=500&q=80');"></div>
+                <h3>Markus Schmidt</h3>
+                <div class="groomsman-role">Trauzeuge von Jens</div>
+                <p class="groomsman-text">
+                    Der beste Freund und ständige Begleiter. Markus kennt Jens seit der Schulzeit und freut sich riesig, diesen besonderen Tag mitzugestalten.
+                </p>
+                <div class="contact-info">
+                    <a href="tel:+4912345678">📞 +49 123 456 78</a>
+                    <a href="mailto:markus@email.de">📧 markus@email.de</a>
+                </div>
+            </div>
+
+            <div class="groomsman-card">
+                <div class="groomsman-image" style="background-image: url('https://images.unsplash.com/photo-1516765867251-609fa1adc63f?w=500&q=80');"></div>
+                <h3>Sofia Müller</h3>
+                <div class="groomsman-role">Trauzeugin von Laura</div>
+                <p class="groomsman-text">
+                    Lauras engste Vertraute seit vielen Jahren. Sofia wird den Laden schmeißen und diesen Tag zu etwas ganz Besonderem machen.
+                </p>
+                <div class="contact-info">
+                    <a href="tel:+4987654321">📞 +49 876 543 21</a>
+                    <a href="mailto:sofia@email.de">📧 sofia@email.de</a>
+                </div>
+            </div>
+
+            <div class="groomsman-card">
+                <div class="groomsman-image" style="background-image: url('https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=500&q=80');"></div>
+                <h3>Thomas Weber</h3>
+                <div class="groomsman-role">Trauzeuge von Jens</div>
+                <p class="groomsman-text">
+                    Langjähriger Freund und Vertrauter. Thomas wird sicherstellen, dass alles perfekt läuft und der Spaß nicht zu kurz kommt.
+                </p>
+                <div class="contact-info">
+                    <a href="tel:+4912349876">📞 +49 123 498 76</a>
+                    <a href="mailto:thomas@email.de">📧 thomas@email.de</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Accommodations Section -->
+    <section id="accommodations" class="accommodations">
+        <h2>Unterkünfte für unsere Gäste</h2>
+        <p style="text-align: center; max-width: 600px; margin: 0 auto 3rem; color: #666; font-size: 1.05rem;">
+            Das Hofgut Heidesheim liegt wunderbar in der Pfalz mit vielen charmanten Unterkünften in der Nähe.
+            Wir haben spezielle Konditionen mit verschiedenen Hotels ausgehandelt. Nutzt gerne diese Optionen oder findet eure eigene Unterkunft!
+        </p>
+        <div class="accommodations-grid">
+            <div class="accommodation-card">
+                <div class="accommodation-image" style="background-image: url('https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=600&q=80');"></div>
+                <div class="accommodation-content">
+                    <h3>Obrigheim - Zentrum</h3>
+                    <div class="accommodation-location">📍 Direkt in der Nähe des Hofguts</div>
+                    <p class="accommodation-description">
+                        Gemütliche Hotels und Pensionen im charmanten Obrigheim, nur wenige Minuten vom Hofgut Heidesheim entfernt.
+                    </p>
+                    <div class="accommodation-features">
+                        <span>⭐ 3-4 Stern</span>
+                        <span>🛏️ ab €70</span>
+                        <span>🍽️ Restaurants</span>
+                        <span>🎯 Parkplatz</span>
+                    </div>
+                    <div class="accommodation-price">Ab 70€/Nacht</div>
+                    <a href="https://www.google.com/maps/search/hotels+obrigheim+pfalz" target="_blank" class="accommodation-button">Hotels suchen</a>
+                </div>
+            </div>
+
+            <div class="accommodation-card">
+                <div class="accommodation-image" style="background-image: url('https://images.unsplash.com/photo-1571896349842-eed4adc4d923?w=600&q=80');"></div>
+                <div class="accommodation-content">
+                    <h3>Bad Dürkheim</h3>
+                    <div class="accommodation-location">📍 ca. 15 km vom Hofgut</div>
+                    <p class="accommodation-description">
+                        Schöne Kurstadt mit vielen Unterkunftsmöglichkeiten. Perfekt für diejenigen, die gerne noch die Umgebung erkunden möchten.
+                    </p>
+                    <div class="accommodation-features">
+                        <span>⭐ 3-4 Stern</span>
+                        <span>🛏️ ab €80</span>
+                        <span>🍽️ Restaurants</span>
+                        <span>🌿 Natur</span>
+                    </div>
+                    <div class="accommodation-price">Ab 80€/Nacht</div>
+                    <a href="https://www.google.com/maps/search/hotels+bad+dürkheim+pfalz" target="_blank" class="accommodation-button">Hotels suchen</a>
+                </div>
+            </div>
+
+            <div class="accommodation-card">
+                <div class="accommodation-image" style="background-image: url('https://images.unsplash.com/photo-1590073242678-70414890569f?w=600&q=80');"></div>
+                <div class="accommodation-content">
+                    <h3>Walsheim - Weinregion</h3>
+                    <div class="accommodation-location">📍 ca. 8 km vom Hofgut</div>
+                    <p class="accommodation-description">
+                        Weinregion Pfalz mit charmanten Unterkünften in Weinorten. Ideal für Weinliebhaber, die die Region entdecken möchten!
+                    </p>
+                    <div class="accommodation-features">
+                        <span>⭐ 3-4 Stern</span>
+                        <span>🛏️ ab €75</span>
+                        <span>🍷 Weingüter</span>
+                        <span>🌾 Landschaft</span>
+                    </div>
+                    <div class="accommodation-price">Ab 75€/Nacht</div>
+                    <a href="https://www.google.com/maps/search/hotels+pfalz+weine" target="_blank" class="accommodation-button">Hotels suchen</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Schedule Section -->
+    <section id="schedule" class="schedule">
+        <h2>Ablauf des Tages</h2>
+        <div class="schedule-timeline">
+            <div class="timeline-item">
+                <div class="time">14:30 Uhr</div>
+                <div class="event">
+                    <h4>Ankommen</h4>
+                    <p>Willkommen! Bitte kommt frühzeitig an.</p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="time">15:00 Uhr</div>
+                <div class="event">
+                    <h4>Trauung</h4>
+                    <p>Das Jawort vor Freunden und Familie</p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="time">16:30 Uhr</div>
+                <div class="event">
+                    <h4>Aperitif & Fotoshooting</h4>
+                    <p>Sekt, Häppchen und schöne Fotos</p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="time">18:00 Uhr</div>
+                <div class="event">
+                    <h4>Dinner</h4>
+                    <p>Gemütlich zusammensitzen und genießen</p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="time">21:00 Uhr</div>
+                <div class="event">
+                    <h4>Tanz & Party</h4>
+                    <p>Lass uns feiern bis zum Morgengrauen!</p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="time">02:00 Uhr</div>
+                <div class="event">
+                    <h4>Ende</h4>
+                    <p>Danke für einen wundervollen Tag!</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section id="faq" class="faq">
+        <h2>Häufig gestellte Fragen</h2>
+        <div class="faq-container">
+            <div class="faq-item">
+                <div class="faq-question" role="button" tabindex="0">
+                    <span>Wie melde ich mich zur Hochzeit an?</span>
+                    <div class="faq-icon">▼</div>
+                </div>
+                <div class="faq-answer">
+                    <div class="faq-answer-content">
+                        Ihr könnt euch ganz einfach über unseren RSVP-Button anmelden. Gebt einfach eure Namen, die Anzahl der Personen und eure Menüwünsche an. Bitte meldet euch bis zum <strong>01. Juni 2024</strong> an, damit wir optimal planen können.
+                    </div>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question" role="button" tabindex="0">
+                    <span>Kann ich einen Pluseins oder eine Begleitung mitbringen?</span>
+                    <div class="faq-icon">▼</div>
+                </div>
+                <div class="faq-answer">
+                    <div class="faq-answer-content">
+                        Falls ihr in der Einladung einen Pluseins erhalten habt, könnt ihr diesen natürlich mitbringen! Gebt die Anzahl einfach bei der Anmeldung an. Wenn ihr unsicher seid, kontaktiert uns einfach direkt.
+                    </div>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question" role="button" tabindex="0">
+                    <span>Was ist mit Kindergerichten oder speziellen Diäten?</span>
+                    <div class="faq-icon">▼</div>
+                </div>
+                <div class="faq-answer">
+                    <div class="faq-answer-content">
+                        Natürlich können wir auf spezielle Wünsche eingehen! Ob Kindergerichte, Allergien, Vegetarisch, Vegan oder andere Unverträglichkeiten - gebt uns einfach Bescheid bei der Anmeldung oder kontaktiert uns direkt. Wir kümmern uns darum!
+                    </div>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question" role="button" tabindex="0">
+                    <span>Wie komme ich zum Hofgut Heidesheim?</span>
+                    <div class="faq-icon">▼</div>
+                </div>
+                <div class="faq-answer">
+                    <div class="faq-answer-content">
+                        Das Hofgut befindet sich in Obrigheim in der Pfalz (Heidesheimer Hauptstr. 10, 67283 Obrigheim). Ihr könnt die Adresse gerne in Google Maps eingeben für die genaue Route. Es gibt ausreichend Parkplätze vor Ort. Falls ihr mit öffentlichen Verkehrsmitteln anreisen möchtet, gebt uns Bescheid - wir helfen gerne!
+                    </div>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question" role="button" tabindex="0">
+                    <span>Gibt es genug Parkplätze?</span>
+                    <div class="faq-icon">▼</div>
+                </div>
+                <div class="faq-answer">
+                    <div class="faq-answer-content">
+                        Ja, auf dem Gelände des Hofguts Heidesheim stehen ausreichend Parkplätze zur Verfügung. Ihr könnt direkt vom Parkplatz zum Festgelände gehen - die Wege sind kurz und schön!
+                    </div>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question" role="button" tabindex="0">
+                    <span>Welche Unterkünfte empfehlt ihr?</span>
+                    <div class="faq-icon">▼</div>
+                </div>
+                <div class="faq-answer">
+                    <div class="faq-answer-content">
+                        Wir haben eine ganze Auswahl an Hotels in der Nähe zusammengestellt! Von Obrigheim direkt neben dem Hofgut, über die schöne Kurstadt Bad Dürkheim bis zur Weinregion - da ist für jeden Geschmack etwas dabei. Schaut einfach in unserer Unterkünfte-Sektion vorbei!
+                    </div>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question" role="button" tabindex="0">
+                    <span>Was sollte ich anziehen?</span>
+                    <div class="faq-icon">▼</div>
+                </div>
+                <div class="faq-answer">
+                    <div class="faq-answer-content">
+                        Der Dresscode ist <strong>Boho-Chic / Elegant</strong>. Denkt an die Farben Eukalyptus Grün, Gold, Creme und Naturtöne. Im Juni könnte es noch etwas frisch sein - bringt gerne eine Jacke mit! Komfortable Schuhe sind auch empfohlen, da wir draußen sind.
+                    </div>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question" role="button" tabindex="0">
+                    <span>Kann ich die Hochzeit fotografieren?</span>
+                    <div class="faq-icon">▼</div>
+                </div>
+                <div class="faq-answer">
+                    <div class="faq-answer-content">
+                        Gerne! Wir freuen uns über spontane Fotos mit dem Handy. Während der Trauung und der wichtigsten Momente würden wir euch aber bitten, kurz die Kameras zu senken, damit auch unsere professionelle Fotografin arbeiten kann. Mehr Infos erhaltet ihr vor Ort!
+                    </div>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question" role="button" tabindex="0">
+                    <span>Wie kann ich einen Programmpunkt organisieren?</span>
+                    <div class="faq-icon">▼</div>
+                </div>
+                <div class="faq-answer">
+                    <div class="faq-answer-content">
+                        Falls ihr gerne etwas beitragen möchtet - sei es eine Rede, eine Überraschung, oder etwas anderes - kontaktiert gerne unsere Trauzeugen Markus, Sofia oder Thomas! Deren Kontaktdaten findet ihr in der Trauzeugen-Sektion. Sie koordinieren alle speziellen Programmpunkte.
+                    </div>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question" role="button" tabindex="0">
+                    <span>Wie lange dauert die Hochzeit?</span>
+                    <div class="faq-icon">▼</div>
+                </div>
+                <div class="faq-answer">
+                    <div class="faq-answer-content">
+                        Der offizielle Feierabend ist gegen 02:00 Uhr nachts. Die Trauung beginnt um 15:00 Uhr und danach geht es mit Aperitif, Dinner und Party weiter. Ihr könnt natürlich auch früher gehen, wenn ihr müde werdet - wir verstehen das! :)
+                    </div>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question" role="button" tabindex="0">
+                    <span>Gibt es Fragen, die hier nicht beantwortet werden?</span>
+                    <div class="faq-icon">▼</div>
+                </div>
+                <div class="faq-answer">
+                    <div class="faq-answer-content">
+                        Kein Problem! Kontaktiert uns gerne direkt per E-Mail unter <strong>kontakt@unsere-hochzeit.de</strong> oder ruft uns an unter <strong>+49 123 456789</strong>. Wir beantworten gerne alle eure Fragen persönlich!
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section id="gallery" class="gallery">
+        <h2>Galerie</h2>
+        <div class="gallery-grid">
+            <div class="gallery-item" style="background: url('https://images.unsplash.com/photo-1606216174052-a76e0b9e2a16?w=600&q=80') center/cover;"></div>
+            <div class="gallery-item" style="background: url('https://images.unsplash.com/photo-1519741497674-611481863552?w=600&q=80') center/cover;"></div>
+            <div class="gallery-item" style="background: url('https://images.unsplash.com/photo-1511285640163-87dd36a973da?w=600&q=80') center/cover;"></div>
+            <div class="gallery-item" style="background: url('https://images.unsplash.com/photo-1465146072230-91cabc968266?w=600&q=80') center/cover;"></div>
+            <div class="gallery-item" style="background: url('https://images.unsplash.com/photo-1506729623306-b5a934d88b53?w=600&q=80') center/cover;"></div>
+            <div class="gallery-item" style="background: url('https://images.unsplash.com/photo-1509927083788-a4f985066d76?w=600&q=80') center/cover;"></div>
+        </div>
+    </section>
+
+    <!-- RSVP Section -->
+    <section id="rsvp" class="cta">
+        <h2>Bitte bestätigt eure Teilnahme</h2>
+        <p>Wir möchten wissen, wer uns feiert!</p>
+        <button class="button" onclick="openRsvpModal()">Jetzt anmelden</button>
+    </section>
+
+    <!-- RSVP Modal -->
+    <div id="rsvpModal" class="modal">
+        <div class="modal-content">
+            <a href="#" class="close" id="closeButton">&times;</a>
+            <h2>Anmeldung zur Hochzeit</h2>
+            <form id="rsvpForm" onsubmit="handleRsvp(event)">
+                <div class="form-group">
+                    <label for="name">Name *</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">E-Mail *</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="phone">Telefon</label>
+                    <input type="tel" id="phone" name="phone">
+                </div>
+                <div class="form-group">
+                    <label for="guests">Anzahl Personen *</label>
+                    <select id="guests" name="guests" required>
+                        <option value="">-- Auswählen --</option>
+                        <option value="1">1 Person</option>
+                        <option value="2">2 Personen</option>
+                        <option value="3">3 Personen</option>
+                        <option value="4">4 Personen</option>
+                        <option value="5">5+ Personen</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="menu">Menüwahl *</label>
+                    <select id="menu" name="menu" required>
+                        <option value="">-- Auswählen --</option>
+                        <option value="fleisch">Fleisch</option>
+                        <option value="vegetarisch">Vegetarisch</option>
+                        <option value="vegan">Vegan</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="allergies">Allergien / Unverträglichkeiten</label>
+                    <textarea id="allergies" name="allergies"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="message">Glückwünsche</label>
+                    <textarea id="message" name="message" placeholder="Hier könnt ihr uns eure besten Wünsche schreiben..."></textarea>
+                </div>
+                <button type="submit" class="button" style="width: 100%; background: var(--eucalyptus); color: var(--white);">
+                    Anmeldung bestätigen
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 Laura & Jens. Mit ❤️ erstellt. | <a href="mailto:kontakt@unsere-hochzeit.de" style="color: var(--gold);">Kontakt</a></p>
+    </footer>
+
+    <script>
+        // RSVP Modal Functions
+        function openRsvpModal() {
+            const modal = document.getElementById('rsvpModal');
+            modal.style.display = 'block';
+            return false;
+        }
+
+        function closeRsvpModal() {
+            document.getElementById('rsvpModal').style.display = 'none';
+            return false;
+        }
+
+        // Wait for DOM to be ready before setting up event listeners
+        document.addEventListener('DOMContentLoaded', function() {
+            // Setup close button
+            const closeButton = document.getElementById('closeButton');
+            if (closeButton) {
+                closeButton.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    closeRsvpModal();
+                    return false;
+                });
+            }
+
+            // Hamburger Menu Functionality
+            const hamburger = document.getElementById('hamburger');
+            const navMenu = document.querySelector('.nav-menu');
+
+            if (hamburger && navMenu) {
+                hamburger.addEventListener('click', function() {
+                    hamburger.classList.toggle('active');
+                    navMenu.classList.toggle('active');
+                });
+
+                // Close menu when a link is clicked
+                navMenu.querySelectorAll('a').forEach(link => {
+                    link.addEventListener('click', function() {
+                        hamburger.classList.remove('active');
+                        navMenu.classList.remove('active');
+                    });
+                });
+
+                // Close menu when clicking outside
+                document.addEventListener('click', function(e) {
+                    if (!e.target.closest('nav')) {
+                        hamburger.classList.remove('active');
+                        navMenu.classList.remove('active');
+                    }
+                });
+            }
+
+            // Setup modal background click
+            document.addEventListener('click', function(event) {
+                const modal = document.getElementById('rsvpModal');
+                if (event.target === modal) {
+                    closeRsvpModal();
+                }
+            }, true);
+
+            // Setup escape key
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape') {
+                    closeRsvpModal();
+                }
+            });
+
+            // Countdown Timer
+            function updateCountdown() {
+                const targetDate = new Date('2028-04-22T00:00:00').getTime();
+                const now = new Date().getTime();
+                const distance = targetDate - now;
+
+                if (distance > 0) {
+                    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                    const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                    const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+                    document.getElementById('days').textContent = days;
+                    document.getElementById('hours').textContent = String(hours).padStart(2, '0');
+                    document.getElementById('minutes').textContent = String(minutes).padStart(2, '0');
+                    document.getElementById('seconds').textContent = String(seconds).padStart(2, '0');
+                } else {
+                    document.getElementById('days').textContent = '0';
+                    document.getElementById('hours').textContent = '00';
+                    document.getElementById('minutes').textContent = '00';
+                    document.getElementById('seconds').textContent = '00';
+                }
+            }
+
+            updateCountdown();
+            setInterval(updateCountdown, 1000);
+
+            // Smooth scroll for navigation links
+            document.querySelectorAll('nav a').forEach(link => {
+                link.addEventListener('click', function(e) {
+                    const href = this.getAttribute('href');
+                    if (href.startsWith('#')) {
+                        e.preventDefault();
+                        const section = document.querySelector(href);
+                        if (section) {
+                            section.scrollIntoView({ behavior: 'smooth' });
+                        }
+                    }
+                });
+            });
+
+            // Add scroll effect to navigation
+            window.addEventListener('scroll', function() {
+                const nav = document.querySelector('nav');
+                if (window.scrollY > 50) {
+                    nav.style.boxShadow = '0 4px 20px rgba(0, 0, 0, 0.1)';
+                } else {
+                    nav.style.boxShadow = '0 2px 10px rgba(0, 0, 0, 0.05)';
+                }
+            });
+
+            // FAQ Accordion Functionality
+            document.querySelectorAll('.faq-question').forEach(question => {
+                const toggleFaq = function() {
+                    const faqItem = question.parentElement;
+
+                    // Close all other items
+                    document.querySelectorAll('.faq-item').forEach(item => {
+                        if (item !== faqItem) {
+                            item.classList.remove('open');
+                            item.querySelector('.faq-question').classList.remove('active');
+                        }
+                    });
+
+                    // Toggle current item
+                    faqItem.classList.toggle('open');
+                    question.classList.toggle('active');
+                };
+
+                // Click Events (works for both desktop and mobile)
+                question.addEventListener('click', function(e) {
+                    toggleFaq();
+                });
+
+                // Keyboard support (Enter und Space)
+                question.addEventListener('keydown', function(e) {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        toggleFaq();
+                    }
+                });
+            });
+        });
+
+        // Handle RSVP Form Submission (outside DOMContentLoaded)
+        function handleRsvp(event) {
+            event.preventDefault();
+            const form = document.getElementById('rsvpForm');
+            const formData = new FormData(form);
+            alert('Danke für eure Anmeldung, ' + formData.get('name') + '! Wir freuen uns, euch zu sehen! 🎉');
+            form.reset();
+            closeRsvpModal();
+        }
+    </script>
+</body>
+</html>
